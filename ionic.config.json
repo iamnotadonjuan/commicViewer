@@ -1,5 +1,7 @@
 {
   "name": "commicViewer",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
