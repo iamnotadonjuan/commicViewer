@@ -1,12 +1,29 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
-</ion-content>
+    <ion-toolbar>
+      <ion-title>
+        Marvel API
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-spinner *ngIf="isLoading" name="dots"></ion-spinner>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let comic of comics" size="6">
+          <ion-card>
+            <ion-img [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" alt="{{ comic.title }}" style="height: 80%; width: 100%"></ion-img>
+            <ion-card-header>
+              <ion-card-title>{{ comic.title }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p>{{ comic.dates[1].date }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
