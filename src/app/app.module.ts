@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { HomeService } from './home/home.service';
 
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

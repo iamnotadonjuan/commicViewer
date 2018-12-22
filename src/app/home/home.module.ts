@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { DateParseFormat } from '../pipes/dateParseFormat.pipe';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, DateParseFormat]
 })
 export class HomePageModule {
 }

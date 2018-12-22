@@ -17,7 +17,7 @@
               <ion-card-title>{{ comic.title }}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <p>{{ comic.dates[1].date }}</p>
+              <p>{{ comic.dates[1].date | dateParseFormat }}</p>
             </ion-card-content>
           </ion-card>
         </ion-col>
