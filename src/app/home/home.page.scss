@@ -13,11 +13,20 @@
 
 .container {
   display: grid;
-  grid-template-columns: repeat(2, 20%);
+  grid-template-columns: repeat(2, 1fr);
   justify-content: end;
   text-align: center;
 }
 
 .icon-item {
   width: 50%;
+}
+
+.like-container {
+  display: flex;
+  align-items: center;
+}
+
+.like-container, span {
+  margin-left: 5%;
 }

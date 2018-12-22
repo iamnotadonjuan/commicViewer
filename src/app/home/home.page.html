@@ -22,21 +22,22 @@
                   <ion-col text-left>
                     <span>{{ comic.dates[1].date | dateParseFormat }}</span>
                   </ion-col>
-                  <ion-col text-right>
-                    <div class="container">
-                      <div class="icon-item">
-                        <p>{{ comic.likes }}</p>
-                        <ion-icon class="like-btn" [ngClass]="comic.likeActive ? 'is-liked' : ''" name="thumbs-up" (click)="likeDislike(true, comic.id)"></ion-icon>
-                      </div>
-                      <div class="icon-item">
-                        <p>{{ comic.dislikes }}</p>
-                        <ion-icon class="dislike-btn" [ngClass]="comic.dislikeActive ? 'is-disliked' : ''" name="thumbs-down" (click)="likeDislike(false, comic.id)"></ion-icon>
-                      </div>
-                    </div>
-                  </ion-col>
                 </ion-row>
               </p>
             </ion-card-content>
+            <ion-row>
+              <ion-col>
+                
+              </ion-col>
+              <ion-col class="like-container">
+                <ion-icon class="like-btn" [ngClass]="comic.likeActive ? 'is-liked' : ''" name="thumbs-up" (click)="likeDislike(true, comic.id)"></ion-icon>
+                <span>likes {{ comic.likes }}</span>
+              </ion-col>
+              <ion-col class="like-container" align-self-center text-center>
+                <ion-icon class="like-btn" [ngClass]="comic.dislikeActive ? 'is-disliked' : ''" name="thumbs-down" (click)="likeDislike(false, comic.id)"></ion-icon>
+                <span>dislikes {{ comic.dislikes }}</span>
+              </ion-col>
+            </ion-row>
           </ion-card>
         </ion-col>
       </ion-row>
