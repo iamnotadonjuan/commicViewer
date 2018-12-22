@@ -1,1 +1,23 @@
 
+.like-btn, .dislike-btn {
+  font-size: 22px;
+}
+
+.is-liked {
+  color: blue;
+}
+
+.is-disliked {
+  color: red;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 20%);
+  justify-content: end;
+  text-align: center;
+}
+
+.icon-item {
+  width: 50%;
+}

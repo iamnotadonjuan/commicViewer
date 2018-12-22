@@ -17,7 +17,25 @@
               <ion-card-title>{{ comic.title }}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <p>{{ comic.dates[1].date | dateParseFormat }}</p>
+              <p>
+                <ion-row>
+                  <ion-col text-left>
+                    <span>{{ comic.dates[1].date | dateParseFormat }}</span>
+                  </ion-col>
+                  <ion-col text-right>
+                    <div class="container">
+                      <div class="icon-item">
+                        <p>{{ comic.likes }}</p>
+                        <ion-icon class="like-btn" name="thumbs-up" (click)="likeDislike(true, comic.id)"></ion-icon>
+                      </div>
+                      <div class="icon-item">
+                        <p>{{ comic.dislikes }}</p>
+                        <ion-icon class="dislike-btn" name="thumbs-down" (click)="likeDislike(false, comic.id)"></ion-icon>
+                      </div>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </p>
             </ion-card-content>
           </ion-card>
         </ion-col>

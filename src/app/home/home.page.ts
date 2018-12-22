@@ -11,6 +11,7 @@ export class HomePage {
   comics = []
   isLoading = false
   offset = 0
+  likesDislikesPerComic = []
   constructor(private homeService: HomeService) {
   }
 
@@ -24,7 +25,9 @@ export class HomePage {
       .subscribe((data) => {
         this.isLoading = false
         if (data['data'].results.length > 0) {
-          this.comics = data['data'].results
+          data['data'].results.forEach(element => {
+            this.comics.push(Object.assign({}, element, { likes: 0, dislikes: 0 }))
+          })
         } else {
           console.log('Not comics found')
         }
@@ -39,7 +42,11 @@ export class HomePage {
     this.homeService.getCommics(this.offset)
       .subscribe((data) => {
         if (data['data'].results.length > 0) {
-          data['data'].results.map(c => this.comics.push(c))
+          let newData = []
+          data['data'].results.forEach(element => {
+            newData.push(Object.assign({}, element, { likes: 0, dislikes: 0 }))
+          })
+          newData.map(data => this.comics.push(data))
           event.target.complete()
         } else {
           console.log('Not comics found')
@@ -47,5 +54,17 @@ export class HomePage {
       }, err => {
         console.log('err', err)
       })
+  }
+
+  likeDislike (isLike = false, id) {
+    if (isLike) {
+      let likesDislikesIndex = this.comics.findIndex(comic => comic.id === id)
+      this.comics[likesDislikesIndex].likes++
+      if (this.comics[likesDislikesIndex].dislikes > 0) this.comics[likesDislikesIndex].dislikes--
+    } else {
+      let likesDislikesIndex = this.comics.findIndex(comic => comic.id === id)
+      this.comics[likesDislikesIndex].dislikes++
+      if (this.comics[likesDislikesIndex].likes > 0) this.comics[likesDislikesIndex].likes--
+    }
   }
 }
