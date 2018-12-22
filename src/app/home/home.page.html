@@ -26,11 +26,11 @@
                     <div class="container">
                       <div class="icon-item">
                         <p>{{ comic.likes }}</p>
-                        <ion-icon class="like-btn" name="thumbs-up" (click)="likeDislike(true, comic.id)"></ion-icon>
+                        <ion-icon class="like-btn" [ngClass]="comic.likeActive ? 'is-liked' : ''" name="thumbs-up" (click)="likeDislike(true, comic.id)"></ion-icon>
                       </div>
                       <div class="icon-item">
                         <p>{{ comic.dislikes }}</p>
-                        <ion-icon class="dislike-btn" name="thumbs-down" (click)="likeDislike(false, comic.id)"></ion-icon>
+                        <ion-icon class="dislike-btn" [ngClass]="comic.dislikeActive ? 'is-disliked' : ''" name="thumbs-down" (click)="likeDislike(false, comic.id)"></ion-icon>
                       </div>
                     </div>
                   </ion-col>

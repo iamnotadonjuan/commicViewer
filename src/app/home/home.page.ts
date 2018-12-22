@@ -26,7 +26,7 @@ export class HomePage {
         this.isLoading = false
         if (data['data'].results.length > 0) {
           data['data'].results.forEach(element => {
-            this.comics.push(Object.assign({}, element, { likes: 0, dislikes: 0 }))
+            this.comics.push(Object.assign({}, element, { likes: 0, dislikes: 0, likeActive: false, dislikeActive: false }))
           })
         } else {
           console.log('Not comics found')
@@ -44,7 +44,7 @@ export class HomePage {
         if (data['data'].results.length > 0) {
           let newData = []
           data['data'].results.forEach(element => {
-            newData.push(Object.assign({}, element, { likes: 0, dislikes: 0 }))
+            newData.push(Object.assign({}, element, { likes: 0, dislikes: 0, likeActive: false, dislikeActive: false }))
           })
           newData.map(data => this.comics.push(data))
           event.target.complete()
@@ -60,10 +60,14 @@ export class HomePage {
     if (isLike) {
       let likesDislikesIndex = this.comics.findIndex(comic => comic.id === id)
       this.comics[likesDislikesIndex].likes++
+      this.comics[likesDislikesIndex].likeActive = true
+      this.comics[likesDislikesIndex].dislikeActive = false
       if (this.comics[likesDislikesIndex].dislikes > 0) this.comics[likesDislikesIndex].dislikes--
     } else {
       let likesDislikesIndex = this.comics.findIndex(comic => comic.id === id)
       this.comics[likesDislikesIndex].dislikes++
+      this.comics[likesDislikesIndex].likeActive = false
+      this.comics[likesDislikesIndex].dislikeActive = true
       if (this.comics[likesDislikesIndex].likes > 0) this.comics[likesDislikesIndex].likes--
     }
   }
