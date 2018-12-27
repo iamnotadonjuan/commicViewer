@@ -1,48 +1,21 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-title>
-        Marvel API
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Marvel API
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
   
-  <ion-content>
-    <ion-spinner *ngIf="isLoading" name="dots"></ion-spinner>
-    <ion-grid>
-      <ion-row>
-        <ion-col *ngFor="let comic of comics" size="6">
-          <ion-card>
-            <ion-img [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" alt="{{ comic.title }}" style="height: 80%; width: 100%"></ion-img>
-            <ion-card-header>
-              <ion-card-title>{{ comic.title }}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <p>
-                <ion-row>
-                  <ion-col text-left>
-                    <span>{{ comic.dates[1].date | dateParseFormat }}</span>
-                  </ion-col>
-                </ion-row>
-              </p>
-            </ion-card-content>
-            <ion-row>
-              <ion-col>
-                
-              </ion-col>
-              <ion-col class="like-container">
-                <ion-icon class="like-btn" [ngClass]="comic.likeActive ? 'is-liked' : ''" name="thumbs-up" (click)="likeDislike(true, comic.id)"></ion-icon>
-                <span>likes {{ comic.likes }}</span>
-              </ion-col>
-              <ion-col class="like-container" align-self-center text-center>
-                <ion-icon class="like-btn" [ngClass]="comic.dislikeActive ? 'is-disliked' : ''" name="thumbs-down" (click)="likeDislike(false, comic.id)"></ion-icon>
-                <span>dislikes {{ comic.dislikes }}</span>
-              </ion-col>
-            </ion-row>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </ion-content>
+<ion-content>
+  <ion-spinner *ngIf="isLoading" name="dots"></ion-spinner>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let comic of comics" size="6" class="card-container">
+        <app-card [comic]="comic" class="card-container" (handleParent)="likeDislike($event)"></app-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

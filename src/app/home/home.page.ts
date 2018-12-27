@@ -4,7 +4,7 @@ import { HomeService } from './home.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
 export class HomePage {
 
@@ -12,6 +12,7 @@ export class HomePage {
   isLoading = false
   offset = 0
   likesDislikesPerComic = []
+
   constructor(private homeService: HomeService) {
   }
 
@@ -56,15 +57,15 @@ export class HomePage {
       })
   }
 
-  likeDislike (isLike = false, id) {
-    if (isLike) {
-      let likesDislikesIndex = this.comics.findIndex(comic => comic.id === id)
+  likeDislike (data) {
+    if (data.isLike) {
+      let likesDislikesIndex = this.comics.findIndex(comic => comic.id === data.comicId)
       this.comics[likesDislikesIndex].likes++
       this.comics[likesDislikesIndex].likeActive = true
       this.comics[likesDislikesIndex].dislikeActive = false
       if (this.comics[likesDislikesIndex].dislikes > 0) this.comics[likesDislikesIndex].dislikes--
     } else {
-      let likesDislikesIndex = this.comics.findIndex(comic => comic.id === id)
+      let likesDislikesIndex = this.comics.findIndex(comic => comic.id === data.comicId)
       this.comics[likesDislikesIndex].dislikes++
       this.comics[likesDislikesIndex].likeActive = false
       this.comics[likesDislikesIndex].dislikeActive = true

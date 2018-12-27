@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { CardComponent } from '../card/card.component';
 import { DateParseFormat } from '../pipes/dateParseFormat.pipe';
 
 @NgModule({
@@ -19,7 +20,7 @@ import { DateParseFormat } from '../pipes/dateParseFormat.pipe';
       }
     ])
   ],
-  declarations: [HomePage, DateParseFormat]
+  declarations: [HomePage, CardComponent, DateParseFormat]
 })
 export class HomePageModule {
 }

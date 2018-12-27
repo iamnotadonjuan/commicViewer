@@ -1,0 +1,30 @@
+<section class="card-container">
+  <ion-card class="card">
+    <ion-img [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" alt="{{ comic.title }}"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ comic.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="card-body">
+      <p>
+        <ion-row>
+          <ion-col text-left>
+            <span>{{ comic.dates[1].date | dateParseFormat }}</span>
+          </ion-col>
+        </ion-row>
+      </p>
+    </ion-card-content>
+    <ion-row class="card-footer">
+      <ion-col>
+        
+      </ion-col>
+      <ion-col class="like-container">
+        <ion-icon class="like-btn" [ngClass]="comic.likeActive ? 'is-liked' : ''" name="thumbs-up" (click)="_sendToParent({ isLike: true, comicId: comic.id })"></ion-icon>
+        <span>{{ comic.likes }}</span>
+      </ion-col>
+      <ion-col class="like-container" align-self-center text-center>
+        <ion-icon class="like-btn" [ngClass]="comic.dislikeActive ? 'is-disliked' : ''" name="thumbs-down" (click)="_sendToParent({ isLike: false, comicId: comic.id })"></ion-icon>
+        <span>{{ comic.dislikes }}</span>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</section>
