@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http'
 import { HomeService } from './home/home.service';
+import { AlertService } from './alert/alert.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { HomeService } from './home/home.service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    HomeService
+    HomeService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

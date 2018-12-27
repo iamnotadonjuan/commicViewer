@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HomeService } from './home.service';
+import { AlertService } from '../alert/alert.service';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +14,14 @@ export class HomePage {
   offset = 0
   likesDislikesPerComic = []
 
-  constructor(private homeService: HomeService) {
-  }
+  constructor(private homeService: HomeService, private alrt: AlertService) {}
 
   ngOnInit () {
     this.retrieveComics()
   }
 
   retrieveComics () {
+    this.alrt.presentAlert('Error', undefined, 'Error trying to load comics', undefined)
     this.isLoading = true
     this.homeService.getCommics()
       .subscribe((data) => {
@@ -30,9 +31,10 @@ export class HomePage {
             this.comics.push(Object.assign({}, element, { likes: 0, dislikes: 0, likeActive: false, dislikeActive: false }))
           })
         } else {
-          console.log('Not comics found')
+          this.alrt.presentAlert('Error', undefined, 'Comics not found', undefined)
         }
       }, err => {
+        this.alrt.presentAlert('Error', undefined, 'Error trying load comics', undefined)
         this.isLoading = false
         console.log('err', err)
       })
@@ -50,9 +52,10 @@ export class HomePage {
           newData.map(data => this.comics.push(data))
           event.target.complete()
         } else {
-          console.log('Not comics found')
+          this.alrt.presentAlert('Error', undefined, 'Comics not found', undefined)
         }
       }, err => {
+        this.alrt.presentAlert('Error', undefined, 'Error trying load comics', undefined)
         console.log('err', err)
       })
   }
