@@ -14,14 +14,16 @@ export class HomePage {
   offset = 0
   likesDislikesPerComic = []
 
-  constructor(private homeService: HomeService, private alrt: AlertService) {}
+  constructor(private homeService: HomeService, private alrt: AlertService) { }
 
   ngOnInit () {
     this.retrieveComics()
   }
-
+  /**
+   * Return: Array Of Objects.
+   * Call the homeService to retrieve the comics and push it into the comics array
+   */
   retrieveComics () {
-    this.alrt.presentAlert('Error', undefined, 'Error trying to load comics', undefined)
     this.isLoading = true
     this.homeService.getCommics()
       .subscribe((data) => {
@@ -39,7 +41,12 @@ export class HomePage {
         console.log('err', err)
       })
   }
-
+  /**
+   * 
+   * @param event - the event of the ion-infinite-scroll to complete the call.
+   * Return Array of objecs
+   * Call the homeService to retrieve the comics and push it into the comics array
+   */
   doInfinite (event) {
     this.offset += 50
     this.homeService.getCommics(this.offset)
@@ -59,7 +66,11 @@ export class HomePage {
         console.log('err', err)
       })
   }
-
+  /**
+   * 
+   * @param data - Object { isLike: Boolean, comicId: Number }
+   * handle the like and dislike event
+   */
   likeDislike (data) {
     if (data.isLike) {
       let likesDislikesIndex = this.comics.findIndex(comic => comic.id === data.comicId)

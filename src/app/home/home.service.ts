@@ -4,13 +4,15 @@ import { environment } from "src/environments/environment";
 
 @Injectable()
 export class HomeService {
-  // urlBase = `https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&apikey=${environment.apiPublicKey}`
 
   urlBase = 'http://gateway.marvel.com/v1/public/comics'
   
-  constructor(private http: HttpClient) {
-  }
-
+  constructor(private http: HttpClient) { }
+  /**
+   * 
+   * @param offset - Number
+   * Return a http request
+   */
   getCommics (offset = 0)  {
     return this.http.get(`${this.urlBase}?ts=1&apikey=${environment.apiPublicKey}&hash=${environment.apiHashKey}&limit=50&offset=${offset}`)
   }
